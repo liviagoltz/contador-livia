@@ -29,40 +29,51 @@
             font-size: 100px;
         }
     </style>
-
+    <!-- SCRIPT DO CONFETTI -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
     <section>
         <h1>Contador</h1>
         <p>0</p>
-        <button onclick="aumentar()">mais</button>
         <button onclick="diminuir()">menos</button>
+        <button onclick="zerar()">zerar</button>
+        <button onclick="aumentar()">mais</button>
     </section>
-    <script>
-        // estado da minha aplicação
-        let numero = 0
-        //alteradores de estado da aplicação
-        function aumentar() {
-            numero = numero + 1
-            console.log(numero)
-        mostrarNaTela()
-        }
-        function diminuir() {
-           numero = numero - 1 
-           console.log(numero)
-           mostrarNaTela()
-        }
-        // jogar o estado da aplicação na tela
-   function mostrarNaTela () {
-    const p = document .querySelector("p")
-    p.innerText = numero
-    console.log(p)
-     }
 
-     // iniciar
-     mostrarNaTela()
-   </script>
+    <script>
+        let numero = 0;
+
+        function diminuir() {
+            numero = numero - 1;
+            mostrarNaTela();
+        }
+
+        function aumentar() {
+            numero = numero + 1;
+            mostrarNaTela();
+        }
+
+        function zerar() {
+            numero = 0;
+            mostrarNaTela();
+
+            // 🎉 CHAMANDO O CONFETTI AQUI
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        function mostrarNaTela() {
+            const p = document.querySelector("p");
+            p.innerText = numero;
+        }
+
+        mostrarNaTela();
+    </script>
 </body>
 
 </html>
